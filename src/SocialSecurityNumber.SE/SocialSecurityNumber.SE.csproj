@@ -18,7 +18,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="icons\" />
+    <Compile Remove="icons\**" />
+    <EmbeddedResource Remove="icons\**" />
+    <None Remove="icons\**" />
   </ItemGroup>
 
 </Project>
