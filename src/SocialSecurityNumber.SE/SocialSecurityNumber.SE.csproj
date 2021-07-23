@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Nullable>enable</Nullable>
+    <Company>XNOM Technology AB</Company>
+    <PackageProjectUrl>https://github.com/xnomtechnology/SocialSecurityNumber.SE/projects</PackageProjectUrl>
+    <PackageIcon></PackageIcon>
+    <PackageIconUrl />
+    <Product>SocialSecurityNumber.SE</Product>
+    <Description>SocialSecurityNumber</Description>
+    <Copyright>MIT License (XNOM AB)</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="icons\" />
+  </ItemGroup>
+
+</Project>

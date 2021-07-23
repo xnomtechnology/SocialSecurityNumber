@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialSecurityNumber.SE", "SocialSecurityNumber.SE\SocialSecurityNumber.SE.csproj", "{F007C6F3-FB12-43AA-8A94-75E0D3FB41D7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SocialSecurityNumber.SE.Test", "SocialSecurityNumber.SE.Test\SocialSecurityNumber.SE.Test.csproj", "{ADFC0F83-67C4-4B5B-977F-524A4BBB2CA4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F007C6F3-FB12-43AA-8A94-75E0D3FB41D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F007C6F3-FB12-43AA-8A94-75E0D3FB41D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F007C6F3-FB12-43AA-8A94-75E0D3FB41D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F007C6F3-FB12-43AA-8A94-75E0D3FB41D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADFC0F83-67C4-4B5B-977F-524A4BBB2CA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADFC0F83-67C4-4B5B-977F-524A4BBB2CA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADFC0F83-67C4-4B5B-977F-524A4BBB2CA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADFC0F83-67C4-4B5B-977F-524A4BBB2CA4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {654EC062-AE6C-4A3F-8D33-0E6520E2686D}
+	EndGlobalSection
+EndGlobal
