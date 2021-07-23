@@ -12,6 +12,9 @@
     <Product>SocialSecurityNumber.SE</Product>
     <Description>SocialSecurityNumber</Description>
     <Copyright>MIT License (XNOM AB)</Copyright>
+    <RepositoryUrl>https://github.com/xnomtechnology/SocialSecurityNumber</RepositoryUrl>
+    <RepositoryType>Source code</RepositoryType>
+    <PackageTags>SocialSecurityNumber data type, validator, parsing</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
