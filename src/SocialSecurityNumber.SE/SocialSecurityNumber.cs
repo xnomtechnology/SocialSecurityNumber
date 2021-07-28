@@ -5,12 +5,12 @@ using System.Text.RegularExpressions;
 using SocialSecurityNumber.SE.Exceptions;
 
 namespace SocialSecurityNumber.SE
-{
-    public sealed class SocialSecurityNumber : IComparable, IComparable<SocialSecurityNumber>, IEquatable<SocialSecurityNumber>, IFormattable
+{   
+    public sealed class SocialSecurityNumber : IComparable<SocialSecurityNumber>, IEquatable<SocialSecurityNumber>, IFormattable
     {
-        private DateTime BirthDate;
-        private int Birthnumber;
-        private int Checksum;
+        private DateTime _birthDate;
+        private int _birthnumber;
+        private int _checksum;
 
         
         public Gender Gender { get; private set; }
@@ -31,34 +31,31 @@ namespace SocialSecurityNumber.SE
             SetGender(tmpSsn);
 
         
-            void SetBirthDate(string value) =>
-                BirthDate = value.Length switch
+            void SetBirthDate(string birthDate) =>
+                _birthDate = birthDate.Length switch
                 {
-                    12 when DateTime.TryParseExact(value.Substring(0, 8), "yyyyMMdd", CultureInfo.CurrentCulture, DateTimeStyles.None, out _)
-                        => DateTime.ParseExact(value.Substring(0, 8), "yyyyMMdd", CultureInfo.CurrentCulture),
-                    10 when DateTime.TryParseExact(value.Substring(0, 6), "yyMMdd", CultureInfo.CurrentCulture, DateTimeStyles.None, out _)
-                        => DateTime.ParseExact(value.Substring(0, 6), "yyMMdd", CultureInfo.CurrentCulture),
+                    12 when DateTime.TryParseExact(birthDate.Substring(0, 8), "yyyyMMdd", CultureInfo.CurrentCulture, DateTimeStyles.None, out _)
+                        => DateTime.ParseExact(birthDate.Substring(0, 8), "yyyyMMdd", CultureInfo.CurrentCulture),
+                    10 when DateTime.TryParseExact(birthDate.Substring(0, 6), "yyMMdd", CultureInfo.CurrentCulture, DateTimeStyles.None, out _)
+                        => DateTime.ParseExact(birthDate.Substring(0, 6), "yyMMdd", CultureInfo.CurrentCulture),
                     _ => throw new SocialSecurityNumberException("Invalid social security number")
                 };
             
-            void SetBirthnumber(string value) => Birthnumber = int.Parse(value.Substring(value.Length - 4, 3));
+            void SetBirthnumber(string birthNumber) => _birthnumber = int.Parse(birthNumber.Substring(birthNumber.Length - 4, 3));
 
-            void SetChecksum(string value) => Checksum = int.Parse(value.Substring(value.Length- 1, 1));
+            void SetChecksum(string checksum) => _checksum = int.Parse(checksum.Substring(checksum.Length- 1, 1));
 
-            void SetGender(string value) => Gender = int.Parse(value.Substring(value.Length - 4, 3)) % 2 == 1 ? Gender.Male : Gender.Female;
+            void SetGender(string gender) => Gender = int.Parse(gender.Substring(gender.Length - 4, 3)) % 2 == 1 ? Gender.Male : Gender.Female;
         }
- 
 
         /// <summary>
-        /// Define format:YYMMDDNNNC\n
-        /// Define format:YYMMDD-NNNC\n
-        /// Define format:YYYYMMDDNNNC\n
-        /// Define format:YYYYMMDD-NNNC
+        /// standard SocialSecurityNumber supported format
+        /// <br>supported format:  YYMMDDNNNC</br>
+        /// <br>supported format:  YYMMDD-NNNC</br>
+        /// <br>supported format:  YYYYMMDDNNNC</br>
+        /// <br>supported format:  YYYYMMDD-NNNC</br>
         /// </summary>
-        /// <param name="YYMMDDNNNC">Define format:YYMMDDNNNC</param>
-        /// <param name="YYMMDD-NNNC">Define format:YYMMDD-NNNC</param>
-        /// <param name="YYYYMMDDNNNC">Define format:YYYYMMDDNNNC</param>
-        /// <param name="YYYYMMDD-NNNC">Define format:YYYYMMDD-NNNC</param>
+        /// <param name="value"></param>
         /// <returns>SocialSecurityNumber</returns>
         public static SocialSecurityNumber Parse(string value)
         {
@@ -72,21 +69,7 @@ namespace SocialSecurityNumber.SE
 
         public override string ToString() => ToString("yyyyMMdd-nnnc", CultureInfo.CurrentCulture);
         
-
-        public int CompareTo(object? obj)
-        {
-            return BirthDate.CompareTo(obj);
-        }
-
-        public int CompareTo(SocialSecurityNumber? other)
-        {
-            return CompareTo(other);
-        }
-
-        public bool Equals(SocialSecurityNumber? other)
-        {
-            return this.Equals(other);
-        }
+        
 
 
         /// <summary>
@@ -104,7 +87,7 @@ namespace SocialSecurityNumber.SE
 
             if (format != null && (format.Contains("y") || format.Contains("M") || format.Contains("d")))
             {
-                value += BirthDate.ToString(format, formatProvider);
+                value += _birthDate.ToString(format, formatProvider);
             }
 
             if (format != null && format.Contains("n", StringComparison.CurrentCultureIgnoreCase))
@@ -114,7 +97,7 @@ namespace SocialSecurityNumber.SE
 
             if (format != null && format.Contains("c", StringComparison.CurrentCultureIgnoreCase))
             {
-                var parsedChecksum = Checksum
+                var parsedChecksum = _checksum
                     .ToString()
                     .Substring(0, format.Split('c').Length - 1);
 
@@ -134,11 +117,46 @@ namespace SocialSecurityNumber.SE
                     .ForEach(_ =>
                     {
                         result += _.Equals("n", StringComparison.CurrentCultureIgnoreCase) 
-                            ? Birthnumber.ToString().Substring(pos++, 1)
+                            ? _birthnumber.ToString().Substring(pos++, 1)
                             : _;
                     });
                 return result;
             }
+        }
+
+        public bool Equals(SocialSecurityNumber? other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return _birthDate.Equals(other._birthDate) && _birthnumber == other._birthnumber && _checksum == other._checksum && Gender == other.Gender;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return ReferenceEquals(this, obj) || obj is SocialSecurityNumber other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_birthDate, _birthnumber, _checksum, (int) Gender);
+        }
+
+        public int CompareTo(SocialSecurityNumber? other)
+        {
+            if (ReferenceEquals(this, other)) return 0;
+
+            if (ReferenceEquals(null, other)) return 1;
+
+            var birthDateComparison = _birthDate.CompareTo(other._birthDate);
+            if (birthDateComparison != 0) return birthDateComparison;
+            
+            var birthnumberComparison = _birthnumber.CompareTo(other._birthnumber);
+            if (birthnumberComparison != 0) return birthnumberComparison;
+
+            var checksumComparison = _checksum.CompareTo(other._checksum);
+            if (checksumComparison != 0) return checksumComparison;
+            
+            return Gender.CompareTo(other.Gender);
         }
     }
 }

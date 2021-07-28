@@ -2,25 +2,36 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Nullable>enable</Nullable>
     <Company>XNOM Technology AB</Company>
-    <PackageProjectUrl>https://github.com/xnomtechnology/SocialSecurityNumber.SE/projects</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/xnomtechnology/SocialSecurityNumber/projects/</PackageProjectUrl>
     <PackageIcon></PackageIcon>
     <PackageIconUrl />
     <Product>SocialSecurityNumber.SE</Product>
     <Description>SocialSecurityNumber</Description>
-    <Copyright>MIT License (XNOM AB)</Copyright>
+    <Copyright>MIT License (XNOM Technology AB)</Copyright>
     <RepositoryUrl>https://github.com/xnomtechnology/SocialSecurityNumber</RepositoryUrl>
-    <RepositoryType>Source code</RepositoryType>
-    <PackageTags>SocialSecurityNumber data type, validator, parsing</PackageTags>
+    <RepositoryType>nuget package</RepositoryType>
+    <PackageTags>SocialSecurityNumber data type, validator, parsing (SE)</PackageTags>
+    <AssemblyVersion>1.0.1.1</AssemblyVersion>
+    <FileVersion>1.0.1.1</FileVersion>
+    <Version>1.0.1</Version>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <NeutralLanguage>sv</NeutralLanguage>
+    <Authors>Saman Payam @ XNOM Technology AB</Authors>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="icons\**" />
     <EmbeddedResource Remove="icons\**" />
     <None Remove="icons\**" />
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

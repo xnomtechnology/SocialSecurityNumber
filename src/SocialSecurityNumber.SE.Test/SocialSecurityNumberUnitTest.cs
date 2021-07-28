@@ -92,6 +92,17 @@ namespace SocialSecurityNumber.SE.Test
         }
 
         [Fact]
+        public void SocialSecurityNumber_ToString_SuccessTest6()
+        {
+            var ssn = "671221-2528";
+            var socialSecurityNumber = SocialSecurityNumber.Parse(ssn);
+            var result = socialSecurityNumber.Gender;
+
+            Assert.Equal(Gender.Female, result);
+        }
+
+
+        [Fact]
         public void SocialSecurityNumber_CreateObject_SuccessTest()
         {
             var ssn = "671221-2528";
